@@ -27,7 +27,7 @@ public class GameStoreTest {
         Assertions.assertFalse(store.containsGame(game1));
     }
 
-    @Test
+  @Test
     public void shouldAddTheSameGameTwice() {
         GameStore store = new GameStore();
 

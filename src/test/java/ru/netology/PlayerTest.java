@@ -80,5 +80,5 @@ public class PlayerTest {
         String actual = player.getName();
         assertEquals(expected, actual);
     }
-
 }
+
