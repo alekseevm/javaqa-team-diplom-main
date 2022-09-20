@@ -1,6 +1,7 @@
 package ru.netology;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
 
 public class PlayerTest {
@@ -20,65 +21,77 @@ public class PlayerTest {
     }
 
     @Test
-    public void shouldSumGenreIfSomeGames() {
+    public void shouldSumGenreIfOneGame0() {
         GameStore store = new GameStore();
-        Game game1 = store.publishGame("Game1", "Аркады");
-        Game game2 = store.publishGame("Game2", "Аркады");
+        Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
 
         Player player = new Player("Petya");
-        player.installGame(game1);
-        player.installGame(game2);
-        player.play(game1, 3);
-        player.play(game2, 4);
+        player.installGame(game);
+        player.play(game, 0);
 
-        int expected = 7;
-        int actual = player.sumGenre(game1.getGenre() + game2.getGenre());
+        int expected = 0;
+        int actual = player.sumGenre(game.getGenre());
         assertEquals(expected, actual);
     }
 
     @Test
-    public void shouldSeeMostPlayerByGenre() {
+    public void shouldSumGenreIfOneGameRPG() {
         GameStore store = new GameStore();
-        Game game1 = store.publishGame("Game1", "Аркады");
-        Game game2 = store.publishGame("Game2", "Аркады");
-        Game game3 = store.publishGame("Game3", "Стратегия");
-
+        Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
 
         Player player = new Player("Petya");
-        player.installGame(game1);
-        player.installGame(game2);
-        player.installGame(game3);
-        player.play(game1, 3);
-        player.play(game2, 4);
-        player.play(game3, 2);
-        player.mostPlayerByGenre("Аркады");
+        player.installGame(game);
+        player.play(game, 3);
 
-
-        String expected = "Game2";
-        String actual = player.getName();
+        int expected = 0;
+        int actual = player.sumGenre("РПГ");
         assertEquals(expected, actual);
     }
+
+
 
     @Test
-    public void shouldSeeMostPlayerByGenreIfGameNotPlayed() {
+    public void shouldPlayRuntimeException() {
         GameStore store = new GameStore();
-        Game game1 = store.publishGame("Game1", "Аркады");
-        Game game2 = store.publishGame("Game2", "Аркады");
-        Game game3 = store.publishGame("Game3", "Стратегия");
-
+        Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
 
         Player player = new Player("Petya");
-        player.installGame(game1);
-        player.installGame(game2);
-        player.installGame(game3);
-        player.play(game1, 3);
-        player.play(game2, 4);
-        player.mostPlayerByGenre("Стратегии");
 
+        assertThrows(RuntimeException.class, () -> {
+            player.play(game, 2);
+        });
 
-        String expected = null;
-        String actual = player.getName();
-        assertEquals(expected, actual);
     }
+
     
+    @Test
+    public void shouldMostPlayerByGenre() {
+        GameStore store = new GameStore();
+        Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+
+        Player player = new Player("Name1");
+        player.installGame(game);
+        player.play(game, 3);
+
+        Game expected = game;
+        Game actual = player.mostPlayerByGenre("Аркады");
+        assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void shouldMostPlayerByGenreNull() {
+        GameStore store = new GameStore();
+        Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+
+        Player player = new Player("Name1");
+        player.installGame(game);
+        player.play(game, 0);
+
+        Game expected = null;
+        Game actual = player.mostPlayerByGenre("Аркады");
+        assertEquals(expected, actual);
+
+    }
+
 }
