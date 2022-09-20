@@ -89,9 +89,8 @@ public class PlayerTest {
         player.installGame(game);
         player.play(game, 0);
 
-        Game expected = null;
         Game actual = player.mostPlayerByGenre("Аркады");
-        assertEquals(expected, actual);
+        assertEquals(null, actual);
 
     }
 
