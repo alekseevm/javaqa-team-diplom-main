@@ -30,13 +30,11 @@ public class GameStoreTest {
   @Test
     public void shouldAddTheSameGameTwice() {
         GameStore store = new GameStore();
-        
-        List<Game> expected = new ArrayList<>();
-        expected.add(new Game("Roblox", "arcade", store));
 
-        store.publishGame("Roblox", "arcade");
+        Game game1 = store.publishGame("Roblox", "arcade");
+        Game game2 = store.publishGame("Roblox", "arcade");
 
-        Assertions.assertEquals(expected, store.getGames());
+        Assertions.assertEquals(game1, store.getGames());
     }
 
     @Test
