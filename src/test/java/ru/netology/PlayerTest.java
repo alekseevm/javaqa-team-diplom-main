@@ -62,9 +62,7 @@ public class PlayerTest {
         });
 
     }
-	
 
-    
     @Test
     public void shouldMostPlayerByGenre() {
         GameStore store = new GameStore();
@@ -77,7 +75,6 @@ public class PlayerTest {
         Game expected = game;
         Game actual = player.mostPlayerByGenre("Аркады");
         assertEquals(expected, actual);
-
     }
 
     @Test
