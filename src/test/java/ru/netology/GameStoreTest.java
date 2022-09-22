@@ -53,20 +53,7 @@ public class GameStoreTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    @Test
-    public void shouldGetSeveralMostPlayers() {
-        GameStore store = new GameStore();
-
-        store.addPlayTime("Petya", 34);
-        store.addPlayTime("Irina", 2);
-        store.addPlayTime("Simon", 121);
-        store.addPlayTime("Liza", 121);
-
-        String[] expected = {"Liza", "Simon"};
-        String actual = store.getMostPlayer();
-
-        Assertions.assertTrue(expected.equals(actual));
-    }
+  
 
     @Test
     public void shouldGetMostPlayerWhenNoPlayers() {
