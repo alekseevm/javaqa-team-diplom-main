@@ -26,16 +26,7 @@ public class GameStoreTest {
 
         Assertions.assertFalse(store.containsGame(game1));
     }
-
-  @Test
-    public void shouldAddTheSameGameTwice() {
-        GameStore store = new GameStore();
-
-        Game game1 = store.publishGame("Roblox", "arcade");
-        Game game2 = store.publishGame("Roblox", "arcade");
-
-        Assertions.assertEquals(game1, store.getGames());
-    }
+    
 
     @Test
     public void shouldNotContainTheGame() {
@@ -46,13 +37,6 @@ public class GameStoreTest {
         Assertions.assertFalse(store.containsGame(game2));
     }
 
-    @Test
-    public void shouldBeEmpty() {
-        GameStore store = new GameStore();
-        Game game1 = store.publishGame("Roblox", "arcade");
-
-        Assertions.assertFalse(store.containsGame(game1));
-    }
 
     @Test
     public void shouldGetOneMostPlayer() {
