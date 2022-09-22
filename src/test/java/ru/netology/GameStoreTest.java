@@ -46,13 +46,6 @@ public class GameStoreTest {
         Assertions.assertFalse(store.containsGame(game2));
     }
 
-    @Test
-    public void shouldBeEmpty() {
-        GameStore store = new GameStore();
-        Game game1 = store.publishGame("Roblox", "arcade");
-
-        Assertions.assertFalse(store.containsGame(game1));
-    }
 
     @Test
     public void shouldGetOneMostPlayer() {
